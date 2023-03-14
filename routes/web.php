@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +24,9 @@ Route::get('/', function () {
 // Route::get('/login', [LoginController::class, 'show']);
 
 Route::middleware('guest')->group(function() {
-    Route::get('login', [LoginController::class, 'show'])->name('login');
+    Route::get('login', [AuthController::class, 'show'])->name('login');
 
-    Route::post('login', [LoginController::class, 'authenticate']);
+    Route::post('login', [AuthController::class, 'authenticate']);
     
     Route::get('forgotpassword', function() {
         return Inertia::render('Auth/ForgotPassword');
@@ -34,9 +34,9 @@ Route::middleware('guest')->group(function() {
 });
 
 Route::middleware(['auth', 'roles:0'])->group(function() {
-    Route::get('home', [StudentController::class, 'dashboard'])->name('student.dashboard');
+    Route::get('student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
 
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 
