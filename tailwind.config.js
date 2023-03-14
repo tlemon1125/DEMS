@@ -10,11 +10,10 @@ module.exports = {
     ],
 
     theme: {
-        extend: {
-            fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-            },
+        fontFamily: {
+            sans: ["Poppins", ...defaultTheme.fontFamily.sans],
         },
+        extend: {},
     },
 
     plugins: [require("@tailwindcss/forms")],
